@@ -17,8 +17,8 @@
   </div>
 
   <div>
-    <%= form.label :users_id, style: "display: block" %>
-    <%= form.text_field :users_id %>
+    <% form.label :user, style: "display: block" %>
+    <%= form.collection_select :user_id, User.all, :id, :name %>
   </div>
 
   <div>
