@@ -1,70 +1,78 @@
-class InventoryFoodsController < ApplicationController
-  before_action :set_inventory_food, only: %i[ show edit update destroy ]
+class InventoriesController < ApplicationController
+  before_action :set_inventory, only: %i[show edit update destroy]
 
-  # GET /inventory_foods or /inventory_foods.json
+  # GET /inventories or /inventories.json
   def index
-    @inventory_foods = InventoryFood.all
+    @inventory = Inventory.new
+    @inventories = Inventory.all
+    @inventories.each do |inventory|
+      # inventory.foods = InventoryFood.where(inventory_id: inventory.id)
+      inventory.inventory_food = InventoryFood.where(inventory_id: inventory.id)
+    end
   end
 
-  # GET /inventory_foods/1 or /inventory_foods/1.json
+  # GET /inventories/1 or /inventories/1.json
   def show
+    @inventory = Inventory.find(params[:id])
+    @foods = InventoryFood.where(inventory_id: @inventory.id)
+    @food_all = Food.all
   end
 
-  # GET /inventory_foods/new
+  # GET /inventories/new
   def new
-    @inventory_food = InventoryFood.new
+    @inventory = Inventory.new
   end
 
-  # GET /inventory_foods/1/edit
-  def edit
-  end
+  # GET /inventories/1/edit
+  def edit; end
 
-  # POST /inventory_foods or /inventory_foods.json
+  # POST /inventories or /inventories.json
   def create
-    @inventory_food = InventoryFood.new(inventory_food_params)
+    @inventory = Inventory.new(inventory_params)
 
     respond_to do |format|
-      if @inventory_food.save
-        format.html { redirect_to inventory_food_url(@inventory_food), notice: "Inventory food was successfully created." }
-        format.json { render :show, status: :created, location: @inventory_food }
+      if @inventory.save
+        format.html { redirect_to inventories_url, notice: 'Inventory was successfully created.' }
+        format.json { render :show, status: :created, location: @inventory }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @inventory_food.errors, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /inventory_foods/1 or /inventory_foods/1.json
+  # PATCH/PUT /inventories/1 or /inventories/1.json
   def update
     respond_to do |format|
-      if @inventory_food.update(inventory_food_params)
-        format.html { redirect_to inventory_food_url(@inventory_food), notice: "Inventory food was successfully updated." }
-        format.json { render :show, status: :ok, location: @inventory_food }
+      if @inventory.update(inventory_params)
+        format.html { redirect_to inventory_url(@inventory), notice: 'Inventory was successfully updated.' }
+        format.json { render :show, status: :ok, location: @inventory }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @inventory_food.errors, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /inventory_foods/1 or /inventory_foods/1.json
+  # DELETE /inventories/1 or /inventories/1.json
   def destroy
-    @inventory_food.destroy
+    @inventory.destroy
 
     respond_to do |format|
-      format.html { redirect_to inventory_foods_url, notice: "Inventory food was successfully destroyed." }
+      format.html { redirect_to inventories_url, notice: 'Inventory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_inventory_food
-      @inventory_food = InventoryFood.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def inventory_food_params
-      params.require(:inventory_food).permit(:quantity, :inventories_id, :foods_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_inventory
+    @inventory = Inventory.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def inventory_params
+    params.require(:inventory).permit(:name, :user_id, :user_id)
+  end
 end

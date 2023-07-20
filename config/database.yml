@@ -2,20 +2,20 @@ default: &default
   adapter: postgresql
   encoding: unicode
   user: postgres
-  password: 1234
+  password: ismail
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
   database: recipe-rails-2-1_development
   user: postgres
-  password: 1234
+  password: ismail
 
 test:
   <<: *default
   database: recipe-rails-2-1_test
   user: postgres
-  password: 1234
+  password: ismail
 
 production:
   <<: *default
