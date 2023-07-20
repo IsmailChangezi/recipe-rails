@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_19_135427) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_20_131230) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,10 +56,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_135427) do
     t.string "cooking_time"
     t.string "description"
     t.boolean "public"
-    t.bigint "users_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_recipes_on_users_id"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,6 +72,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_135427) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -80,5 +81,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_19_135427) do
   add_foreign_key "inventory_foods", "inventories", column: "inventories_id"
   add_foreign_key "recipe_foods", "foods", column: "foods_id"
   add_foreign_key "recipe_foods", "recipes", column: "recipes_id"
-  add_foreign_key "recipes", "users", column: "users_id"
+  add_foreign_key "recipes", "users"
 end
