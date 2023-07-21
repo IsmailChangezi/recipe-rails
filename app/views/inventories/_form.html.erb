@@ -1,8 +1,12 @@
+<br>
 <%= bootstrap_form_with(model: inventory) do |form| %>
   <% if inventory.errors.any? %>
   <% end %>
     <%= form.text_field :name %>
     <%= form.collection_select :user_id, User.all, :id, :name %>
-    <%= form.submit %>
-    <%= link_to "Back to inventories", inventories_path, class:'float-right btn btn-danger' %>
+    <br>
+    <div class="d-flex justify-content-between">
+      <%= form.submit %>
+      <%= link_to "Back to inventories", inventories_path, class:'float-right btn btn-danger' %>
+    </div>
 <% end %>
