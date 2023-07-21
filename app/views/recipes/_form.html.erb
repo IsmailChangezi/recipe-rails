@@ -16,6 +16,10 @@
     <%= form.text_field :cooking_time %>
     <%= form.text_field :description %>
     <%= form.check_box :public %>
-    <%= form.text_field :user_id %>
-    <%= form.submit %>
+    <%= form.collection_select :user_id, User.all, :id, :name %>
+    <br>
+    <div class="d-flex justify-content-between">
+      <%= form.submit %>
+      <%= link_to "Back to recipes", recipes_path, class:'float-right btn btn-danger' %>
+    </div>
 <% end %>
