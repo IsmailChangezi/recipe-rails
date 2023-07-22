@@ -44,7 +44,7 @@
 <a href= <%= "/general_shopping_list" %>>
   <button class="btn-bg-red-big ">Generate Shopping List</button>
 </a>
-<% if can? :destroy , @recipe %>
+<% if can? :manage , @recipe %>
 <a href= <%= "/recipes/#{@recipe.id}/recipe_foods/new" %>>
   <button class="btn-bg-red-big ">Add Ingredient</button>
 </a>
