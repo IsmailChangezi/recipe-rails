@@ -7,18 +7,18 @@ default: &default
 
 development:
   <<: *default
-  database: recipe-rails-2-1_development
+  database: recipe-rails-2-1-2_development
   user: postgres
   password: ismail
 
 test:
   <<: *default
-  database: recipe-rails-2-1_test
+  database: recipe-rails-2-1-2_test
   user: postgres
   password: ismail
 
 production:
   <<: *default
-  database: recipe-rails-2-1_production
+  database: recipe-rails-2-1-2_production
   username: blog-app
   password: <%= ENV["HELLORAILS_DATABASE_PASSWORD"] %>
