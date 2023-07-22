@@ -1,42 +1,43 @@
 <%= render 'layouts/navbar' %> 
 
 <section class="recipe-details-container">
-  <div class="heading-text">
-    <h1> <%= @recipe.name %></h1>
+    <div class="heading-text">
+      <h1 class="text-white"> <%= @recipe.name %></h1>
+    </div>
+  <div class="details-and-public-togl">
+
+  <p class="notice"><%= notice %></p>
+
+<div class="recipe-container">
+  <div class="recipe-details">
+
+    <h2 class="main-h2">
+      Preparation Time: <%= @recipe.preparation_time %> hour
+    </h2>
+    
+    <h2 class="main-h2">
+      Cooking Time: <%= @recipe.cooking_time %> hour
+    </h2>
+
+    <p class="main-p">
+    <%= @recipe.description %>
+  </p>
+
   </div>
-<div class="details-and-public-togl">
 
-<p class="notice"><%= notice %></p>
-
-<div class="recipe-details">
-
-  <h2 class="main-h2">
-    Preparation Time: <%= @recipe.preparation_time %> hour
-  </h2>
-  
-  <h2 class="main-h2">
-    Cooking Time: <%= @recipe.cooking_time %> hour
-  </h2>
-
-  <p class="main-p">
-  <%= @recipe.description %>
-</p>
-
-</div>
-
-<% if can? :destroy , @recipe %>
-<%= form_for @recipe, method: :patch do |f| %>
-<div class="switch-btn">
-  <p class="main-p">Public : </p>
-  <label class="switch">
-  <div><%= f.submit "" %></div>
-    <%= f.check_box :public, { checked: @recipe.public } %>
-    <span class="slider round"></span>
-  </label>
-</div>
-<% end %>
-<% end %>
-
+  <% if can? :destroy , @recipe %>
+  <%= form_for @recipe, method: :patch do |f| %>
+  <div class="switch-btn">
+    <p class="main-p">Public : </p>
+    <label class="switch">
+    <div><%= f.submit "" %></div>
+      <%= f.check_box :public, { checked: @recipe.public } %>
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <% end %>
+  <% end %>
+  </div>
 </div>
 
 <% if can? :destroy , @recipe %>
