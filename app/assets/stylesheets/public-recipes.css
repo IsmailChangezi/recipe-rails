@@ -6,6 +6,15 @@
   color: var(--color-text-black);
 }
 
+.public-recipes h3 {
+  font-size: 2.2rem;
+  color: var(--color-text-black);
+}
+
+.public-recipes h4 {
+  margin-top: 10px;
+}
+
 .public-recipes li {
   width: 60%;
 }
