@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   subject do
     @user = User.create(name: 'Ismail')
-    @recipe = Recipe.create(name: 'Chicken Biryani', preparation_time: 4, cooking_time: 5, description: 'How to cook chicken biryani',
+    @recipe = Recipe.create(name: 'Chicken Biryani', preparation_time: 4, cooking_time: 5, description: '',
                             public: true, user_id: @user.id)
   end
 

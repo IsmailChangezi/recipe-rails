@@ -6,7 +6,8 @@ RSpec.describe GeneralShoppingListController, type: :system do
     user = authentificate_test_user
 
     @recipe = Recipe.first
-    @recipe ||= Recipe.create(name: 'Pizza Recipe', description: 'Salt', preparation_time: 10, cooking_time: 3, public: true, user:)
+    @recipe ||= Recipe.create(name: 'Pizza Recipe', description: 'Salt', preparation_time: 10, cooking_time: 3,
+                              public: true, user:)
 
     @food = Food.first
     @food ||= Food.create(name: 'Salt', measurement_unit: 'gram', price: 1, quantity: 3, user:)
