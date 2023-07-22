@@ -249,6 +249,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  bootstrap_form
   cancancan (~> 1.9)
   capybara
   debug
